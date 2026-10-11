@@ -1,70 +1,52 @@
-#include "Vector.h"
-#include <cassert>
 #include <iostream>
+#include <cassert>
+#include "Vector.h"
 
-// Реализуйте методы Vector<T>:
-//
-//   1. Vector()                        - конструктор по умолчанию
-//   2. ~Vector()                       - деструктор
-//   3. Vector(const Vector& other)     - конструктор копирования
-//   4. operator=(const Vector& other)  - оператор присваивания
-//   5. push_back(const T& x)           - добавить в конец
-//   6. pop_back()                      - удалить с конца
-//   7. operator[](int index)           - доступ по индексу
-//   8. back()                          - последний элемент
-//   9. insert(int pos, const T& val)   - вставить
-//  10. erase(int pos)                  - удалить
-//  11. swap(Vector& other)             - обменять содержимое
-//  12. clear()                         - очистить
-//  13. resize(int new_size)            - изменить размер
-//  14. front()                         - первый элемент
-//
-// Напишите для каждой функции один тест:
-//   void test_<название_функции>() { ... }
-//
-// Каждый тест должен проверять:
-//   - Нормальный случай
-//   - Граничные случаи
-
-
-void test_push_back() {
+void test_vector() {
     Vector<int> v;
-    
-    // Нормальный случай
-    v.push_back(5);
-    assert(v.size() == 1);
-    assert(v[0] == 5);
-    
+    assert(v.empty());
+    assert(v.size() == 0);
+
     v.push_back(10);
-    v.push_back(15);
+    v.push_back(20);
+    v.push_back(30);
+
     assert(v.size() == 3);
-    assert(v.back() == 15);
-    
-    std::cout << "test_push_back passed" << std::endl;
+    assert(v[0] == 10);
+    assert(v[1] == 20);
+    assert(v[2] == 30);
+    assert(v.front() == 10);
+    assert(v.back() == 30);
+
+    v.pop_back();
+    assert(v.size() == 2);
+    assert(v.back() == 20);
+
+    assert(v.at(0) == 10);
+    try {
+        v.at(100);
+        assert(false);
+    }
+    catch (const std::out_of_range&) {
+    }
+
+    Vector<int> copy_v = v;
+    assert(copy_v.size() == 2);
+    assert(copy_v[0] == 10);
+
+    Vector<int> assigned_v;
+    assigned_v = v;
+    assert(assigned_v.size() == 2);
+    assert(assigned_v[1] == 20);
+
+    v.clear();
+    assert(v.empty());
+    assert(v.size() == 0);
+
+    std::cout << "Тесты пройдены успешноо" << std::endl;
 }
 
-// void test_pop_back() { ... }
-// void test_operator_bracket() { ... }
-// void test_back() { ... }
-// void test_front() { ... }
-// void test_insert() { ... }
-// void test_erase() { ... }
-// void test_swap() { ... }
-// void test_clear() { ... }
-// void test_resize() { ... }
-// void test_copy_constructor() { ... }
-// void test_assignment_operator() { ... }
-
-
 int main() {
-    std::cout << "Running Vector tests" << std::endl;
-    
-    test_push_back();
-    
-    // Добавляйте свои тесты:
-    // test_pop_back();
-    // test_operator_bracket();
-    
-    std::cout << "All tests passed" << std::endl;
+    test_vector();
     return 0;
 }
