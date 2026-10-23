@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="stack-queue-homework.vcxproj" Id="80802321-a6e4-4172-a8b2-4b3b8f051ca2" />
+</Solution>
+

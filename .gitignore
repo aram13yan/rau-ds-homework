@@ -23,3 +23,7 @@ Thumbs.db
 *.tmp
 *.log
 /.vs
+
+# Visual Studio generated files
+**/.vs/
+**/x64/
